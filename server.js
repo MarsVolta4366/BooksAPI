@@ -1,8 +1,10 @@
 const express = require("express")
 const mongoose = require("mongoose")
 require("dotenv").config()
+const cors = require("cors")
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
@@ -14,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use("/books", require("./controllers/books_controller"))
 
 app.get("/", (req, res) => {
-    res.send("HI")
+    res.send("Hello world")
 })
 
 app.listen(process.env.PORT)
